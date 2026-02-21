@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:template_flutter_test/shared/constants/env_config.dart';
+import 'package:template_flutter_test/shared/constants/env/env_config.dart';
 
 // class ApiConfig {
 

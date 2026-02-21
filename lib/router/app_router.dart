@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:template_flutter_test/modules/home_screen.dart';
+import 'package:template_flutter_test/modules/tickets/screens/dashboard_screen.dart';
 import 'package:template_flutter_test/router/guards/permission_guard.dart';
 import 'package:template_flutter_test/router/guards/repository/index.dart';
 import 'package:template_flutter_test/router/guards/role_guard.dart';
@@ -14,25 +15,39 @@ final routerProvider = Provider<GoRouter>((ref) {
   // TODO: Implementar el provider del socket
 
   return GoRouter(
-    initialLocation: '/',
+    initialLocation: '/dashboard',
     redirect: (context, state) {
 
-      final path = state.matchedLocation;
+      // final path = state.matchedLocation;
 
-      if(path == '/'){
-        return _executeGuards(context, state, ref, [
-          SocketGuard(),
-          PermissionGuard(),
-          RoleGuard()
-        ] );
-      }
+      // if(path == '/'){
+      //   return _executeGuards(context, state, ref, [
+      //     SocketGuard(),
+      //     PermissionGuard(),
+      //     RoleGuard()
+      //   ] );
+      // }
 
       return null;
     },
     routes: [
-      GoRoute(
-        path: '/', 
-        builder: (context, state) => HomeScreen())
+
+      //? RUTAS PUBLICAS (Login, Register, Forgot Password, etc...)
+
+      //? RUTAS PADRE (Dashboard, etc...)
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) {
+          return HomeScreen(navigationShell: navigationShell);
+        },
+        branches: [
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: '/dashboard',
+              builder: (context, state) => DashboardScreen(),
+            ),
+          ]),
+        ],  
+      )
     ],
   );
 });

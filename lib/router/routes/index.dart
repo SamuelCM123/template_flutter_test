@@ -1,14 +1,78 @@
 
-import 'package:go_router/go_router.dart';
+import 'package:flutter/material.dart';
 
-final routesMenu = <GoRoute>[
+class MenuItem {
+  final String title;
+  final String name;
+  final String path;
+  final IconData icon;
+  final List<MenuItem>? children;
+  // final Widget Function(BuildContext, GoRouterState, Widget) builder;
 
-  // TODO: Agregar ruta padre para manejar tickets (Layout principal)
-  // TODO: Agregar ruta hija para desk (Atender ticket)
-  // TODO: Agregar rutar hija para index component (Lista de tickets en proceso)
-  // TODO: Agregar ruta hija para newTicket (Genera un nuevo ticket)
-  // TODO: Agregar ruta hija para public (Ticket en proceso y tickets en cola)
-  GoRoute(
-    path: '/'
-  )
-];
+  MenuItem(
+    {
+      this.children,
+      required this.title,
+      required this.name,
+      required this.path,
+      required this.icon,
+      // required this.builder
+    });
+
+  // TODO: ENFOCADO PARA EL SIDEBAR O EL MENU DEL MOVIL
+  static final List<MenuItem> appMenu = <MenuItem>[
+    MenuItem(
+      title: 'Index Layout',
+      name: 'tickets',
+      path: '/tickets',
+      icon: Icons.receipt_long,
+      children: [
+        
+        MenuItem(
+          title: 'Desk',
+          name: 'desk',
+          path: '/tickets/desk',
+          icon: Icons.receipt_long
+        ),
+
+        MenuItem(
+          title: 'Index',
+          name: 'index-component',
+          path: '/tickets/index-component',
+          icon: Icons.receipt_long
+        ),
+
+      ]
+    ),
+    MenuItem(
+      title: 'Public', 
+      name: 'public',
+      path: '/public',
+      icon: Icons.public
+    ),
+    MenuItem(
+      title: 'New Ticket', 
+      name: 'new-ticket',
+      path: '/new-ticket',
+      icon: Icons.add_circle_outline
+    )
+  ];
+
+  static final mainRoutes = <MenuItem>[
+    MenuItem(
+      title: 'Home',
+      name: 'home',
+      path: '/',
+      icon: Icons.home,
+      children: appMenu
+    ),
+    /**
+     *? AQUI VAN TODAS LAS RUTAS PRINCIPALES SIN NECESIDAD DE AUTENTICACIÓN COMO:
+     * 1- Login(Home)
+     * 2- Register
+     * 3- Forgot Password
+     * 4- etc...
+     */
+  ];
+
+}
