@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:template_flutter_test/shared/widgets/menu/widgets/custom_menu.dart';
 
 class DashboardScreen extends StatefulWidget {
 
-  const DashboardScreen({super.key});
+  final Widget child;
+
+  const DashboardScreen({super.key, required this.child});
 
   @override
   State<DashboardScreen> createState() => _DashboardScreenState();
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Center(
-          child: ElevatedButton(
-            style: ButtonStyle(
-              shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
-            ),
-            onPressed: () => context.go('/dashboard'), 
-            child: Text('Dashboard'),
-          ),
-        ),
-      );
+    return Scaffold(
+      key: scaffoldKey,
+      drawer: CustomMenu(scaffoldKey: scaffoldKey),
+      appBar: AppBar(
+        title: const Text('Dashboard Screen'),
+      ),
+      body: widget.child,
+    );
   }
 }

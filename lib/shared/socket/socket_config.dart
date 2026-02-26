@@ -4,7 +4,7 @@ import 'package:template_flutter_test/shared/constants/env/env_config.dart';
 
 class SocketConfig {
 
-  //? TODO: CONFIGURAR LOS RECURSOS CENTRALIZADOS NECESARIOS PARA LA CONFIGURACIÓN DE LOS SOCKETS
+  // TODO: CONFIGURAR LOS RECURSOS CENTRALIZADOS NECESARIOS PARA LA CONFIGURACIÓN DE LOS SOCKETS
   /**
    ** 1- Verificar el tiempo del hearbeat
    ** 2- Maximo de reconexiones

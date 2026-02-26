@@ -12,13 +12,14 @@ class _PublicScreenState extends State<PublicScreen> {
   @override
 
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Public Screen'),
-      ),
-      body: const Center(
-        child: Text('Public Screen'),
-      ),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Center(
+            child: Text('Public Screen'),
+          ),
+        ]
+      )
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:template_flutter_test/shared/widgets/menu/custom_menu.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
 
@@ -20,10 +19,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
     // TODO: Agregar el menu de componentes
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Screen'),
-      ),
-      body: widget.navigationShell
+      body: widget.navigationShell,
     );
   }
 

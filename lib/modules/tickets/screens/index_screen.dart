@@ -11,13 +11,14 @@ class IndexScreen extends StatefulWidget {
 class _IndexScreenState extends State<IndexScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Index Screen'),
-      ),
-      body: const Center(
-        child: Text('Index Screen'),
-      ),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Center(
+            child: Text('Index Screen'),
+          ),
+        ]
+      )
     );
   }
 }

@@ -21,29 +21,29 @@ class MenuItem {
 
   // TODO: ENFOCADO PARA EL SIDEBAR O EL MENU DEL MOVIL
   static final List<MenuItem> appMenu = <MenuItem>[
-    MenuItem(
-      title: 'Index Layout',
-      name: 'tickets',
-      path: '/tickets',
-      icon: Icons.receipt_long,
-      children: [
+    // MenuItem(
+    //   title: 'Index Layout',
+    //   name: 'tickets',
+    //   path: '/tickets',
+    //   icon: Icons.receipt_long,
+    //   children: [
         
-        MenuItem(
-          title: 'Desk',
-          name: 'desk',
-          path: '/tickets/desk',
-          icon: Icons.receipt_long
-        ),
+    //     MenuItem(
+    //       title: 'Desk',
+    //       name: 'desk',
+    //       path: '/tickets/desk',
+    //       icon: Icons.receipt_long
+    //     ),
 
-        MenuItem(
-          title: 'Index',
-          name: 'index-component',
-          path: '/tickets/index-component',
-          icon: Icons.receipt_long
-        ),
+    //     MenuItem(
+    //       title: 'Index',
+    //       name: 'index-component',
+    //       path: '/tickets/index-component',
+    //       icon: Icons.receipt_long
+    //     ),
 
-      ]
-    ),
+    //   ]
+    // ),
     MenuItem(
       title: 'Public', 
       name: 'public',
@@ -55,6 +55,18 @@ class MenuItem {
       name: 'new-ticket',
       path: '/new-ticket',
       icon: Icons.add_circle_outline
+    ),
+    MenuItem(
+      title: 'Index Component', 
+      name: 'index-component',
+      path: '/index-component',
+      icon: Icons.receipt_long,
+    ),
+    MenuItem(
+      title: 'Update App',
+      name: 'update-app', 
+      path: '/update-app', 
+      icon: Icons.update
     )
   ];
 
