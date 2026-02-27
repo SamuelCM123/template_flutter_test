@@ -60,6 +60,9 @@ class _NewTicketScreenState extends ConsumerState<NewTicketScreen> {
           Center(
             child: Text('EL mau se la come entera'),
           ),
+          Center(
+            child: Text('EL mau se la come entera por dos'),
+          ),
         ]
       )
     );
