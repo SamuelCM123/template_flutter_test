@@ -56,7 +56,10 @@ class _NewTicketScreenState extends ConsumerState<NewTicketScreen> {
             }, 
             label: const Text('Descarga APK'), 
             icon: const Icon(Icons.download)
-          )
+          ),
+          Center(
+            child: Text('EL mau se la come entera'),
+          ),
         ]
       )
     );
