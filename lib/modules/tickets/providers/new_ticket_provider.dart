@@ -13,27 +13,27 @@ class NewTicket extends Notifier<NewTicketState> {
     return NewTicketState(newTicket: 0, lastTicketNumber: 0);
   }
 
-  Future<int> getTicket () async {
-    final apiApp = ref.read(apiAppProvider);
-      final response = await apiApp.get('/last');
-      print(response);
-      state = state.copyWith(
-        newTicket: response.data,
-        lastTicketNumber: response.data
-      );
-      return response.data;
-  }
+  // Future<int> getTicket () async {
+  //   final apiApp = ref.read(apiAppProvider);
+  //     final response = await apiApp.get('/last');
+  //     print(response);
+  //     state = state.copyWith(
+  //       newTicket: response.data,
+  //       lastTicketNumber: response.data
+  //     );
+  //     return response.data;
+  // }
 
-  void createTicket () async {
-    final apiApp = ref.read(apiAppProvider);
-    final response = await apiApp.post('/');
-    print('createTicket:$response');
-    state = state.copyWith(
-      lastTicketNumber: response.data["number"],
-    );
+  // void createTicket () async {
+  //   final apiApp = ref.read(apiAppProvider);
+  //   final response = await apiApp.post('/');
+  //   print('createTicket:$response');
+  //   state = state.copyWith(
+  //     lastTicketNumber: response.data["number"],
+  //   );
 
-    addNewTicket();
-  }
+  //   addNewTicket();
+  // }
 
   void addNewTicket(){
     state = state.copyWith(

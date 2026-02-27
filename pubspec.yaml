@@ -45,6 +45,9 @@ dependencies:
 
   #* Diseño
   cupertino_icons: ^1.0.8
+  google_fonts: ^8.0.1
+  animate_do: ^4.2.0
+
 
   #* Utilidades Extra
   flutter_hooks: ^0.21.3+1

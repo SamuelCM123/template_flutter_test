@@ -6,6 +6,7 @@ import 'package:open_filex/open_filex.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:template_flutter_test/shared/widgets/toast/toast_services.dart';
 
 class AutoUpdateService {
   
@@ -13,6 +14,7 @@ class AutoUpdateService {
 
   Future<void> checkForUpdate() async {
     try {
+      ToastService.showToast(title: 'Descargando APK', message: 'Espere un momento mientras se descarga', type: 'info',duration: Duration(seconds: 10));
       final packageInfo = await PackageInfo.fromPlatform();
       final localBuild = packageInfo.version;
       print("packageInfo: ${packageInfo.version}");
@@ -25,9 +27,12 @@ class AutoUpdateService {
       final updateInfo = UpdateInfo.fromJson(response.data);
       print(updateInfo.tagName);
       print('v$localBuild');
-      // if (updateInfo.tagName != 'v$localBuild') {
+      if (updateInfo.tagName != 'v$localBuild') {
         await _handleUpdate(updateInfo);
-      // }
+      }
+      else{
+        ToastService.showToast(title: 'Actualizado', message: 'Ya tienes la ultima versión', type: 'error');
+      }
     } catch (e) {
       print("Error checking update: $e");
     }

@@ -3,11 +3,18 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:template_flutter_test/modules/downloads/screens/update_app_screen.dart';
 import 'package:template_flutter_test/modules/home_screen.dart';
-import 'package:template_flutter_test/router/guards/index.dart';
+import 'package:template_flutter_test/router/guards/index.dart'; // TODO: Implementar los guards
 import 'package:template_flutter_test/modules/tickets/screens/index.dart';
 import 'package:template_flutter_test/router/guards/repository/index.dart';
 
 // class AppRouter {
+
+class NavigationService {
+  static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+  static BuildContext get context => navigatorKey.currentContext!;
+  static OverlayState get overlay => navigatorKey.currentState!.overlay!;
+}
 
 final routerProvider = Provider<GoRouter>((ref) {
   // TODO: Implementar el provider de autenticación (Permisos hardocodeados por ahora)
@@ -15,6 +22,7 @@ final routerProvider = Provider<GoRouter>((ref) {
 
   return GoRouter(
     initialLocation: '/dashboard/new-ticket',
+    navigatorKey: NavigationService.navigatorKey,
     debugLogDiagnostics: true,
     redirect: (context, state) {
       // TODO: Validar redireccionamientos dependiendo la autenticación del usuario, permisos, roles, etc...

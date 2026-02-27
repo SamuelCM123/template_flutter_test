@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+// import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:template_flutter_test/router/app_router.dart';
 
@@ -11,7 +11,7 @@ void main() async {
   // TODO: Inicializar router
 
   //? Cargar variables de entorno
-  await dotenv.load(fileName: '.env');
+  // await dotenv.load(fileName: '.env');
 
   //? Ejecutar la aplicación
   runApp(
