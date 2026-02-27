@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:template_flutter_test/modules/tickets/providers/new_ticket_provider.dart';
 import 'package:template_flutter_test/shared/api/providers/apiApp_provider.dart';
+import 'package:template_flutter_test/shared/helpers/download/auto_update_apk.dart';
 
 class NewTicketScreen extends ConsumerStatefulWidget {
 
@@ -48,6 +49,14 @@ class _NewTicketScreenState extends ConsumerState<NewTicketScreen> {
             }, 
             label: const Text('Nuevo Ticket'), 
             icon: const Icon(Icons.add)
+          ),
+          OutlinedButton.icon(
+            onPressed: () { 
+              print('Auto Update');
+              AutoUpdateService().checkForUpdate();
+            }, 
+            label: const Text('Descarga APK'), 
+            icon: const Icon(Icons.download)
           )
         ]
       )

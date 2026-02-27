@@ -1,0 +1,23 @@
+name: Subir APK a Release
+on:
+  push:
+    tags:
+      - 'v*' # Se activa cuando creas un tag que empiece con v (ej. v1.0.0)
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - run: flutter pub get
+      - run: flutter build apk --release
+      
+      - name: Crear Release y Subir Asset
+        uses: softprops/action-gh-release@v1
+        with:
+          files: build/app/outputs/flutter-apk/app-release.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
