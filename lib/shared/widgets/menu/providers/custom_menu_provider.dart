@@ -6,3 +6,8 @@ final selectedMenuIndex = Provider.family<int, String>((ref, location) {
   final locationIndex = MenuItem.appMenu.indexWhere((item) => item.name == location);
   return locationIndex == -1 ? 0 : locationIndex;
 });
+
+final selectedMenuTitle = Provider.family<String, String>((ref, location) {
+  final item = MenuItem.appMenu.firstWhere((item) => item.name == location);
+  return item.title;
+});

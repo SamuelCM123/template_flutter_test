@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:template_flutter_test/modules/dashboard_screen.dart';
 import 'package:template_flutter_test/modules/downloads/screens/update_app_screen.dart';
 import 'package:template_flutter_test/modules/home_screen.dart';
+import 'package:template_flutter_test/modules/qr/screens/qr_screen.dart';
 import 'package:template_flutter_test/router/guards/index.dart'; // TODO: Implementar los guards
 import 'package:template_flutter_test/modules/tickets/screens/index.dart';
 import 'package:template_flutter_test/router/guards/repository/index.dart';
@@ -89,7 +91,16 @@ final routerProvider = Provider<GoRouter>((ref) {
                         builder: (context, state) => UpdateAppScreen(),
                       ),
                     ]
-                  )
+                  ),
+                  StatefulShellBranch(
+                    routes: [
+                      GoRoute(
+                        path: '/dashboard/qr',
+                        name: 'qr',
+                        builder: (context, state) => QrScreen(),
+                      ),
+                    ]
+                  ),
                   // GoRoute(
                   //   path: '/dashboard/public',
                   //   name: 'public',

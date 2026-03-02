@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:template_flutter_test/shared/helpers/download/auto_update_apk.dart';
 
 class UpdateAppScreen extends ConsumerStatefulWidget {
 
@@ -18,6 +19,14 @@ class _UpdateAppScreenState extends ConsumerState<UpdateAppScreen> {
         children: [
           Center(
             child: Text('Módulo para actualizar la app'),
+          ),
+          OutlinedButton.icon(
+            onPressed: () { 
+              print('Auto Update');
+              AutoUpdateService().checkForUpdate();
+            }, 
+            label: const Text('Descarga APK'), 
+            icon: const Icon(Icons.download)
           ),
         ]
       )

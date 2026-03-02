@@ -67,7 +67,13 @@ class MenuItem {
       name: 'update-app', 
       path: '/update-app', 
       icon: Icons.update
-    )
+    ),
+    MenuItem(
+      title: 'QR', 
+      name: 'qr',
+      path: '/qr',
+      icon: Icons.qr_code
+    ),
   ];
 
   static final mainRoutes = <MenuItem>[

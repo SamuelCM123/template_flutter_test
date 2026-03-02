@@ -14,12 +14,7 @@ class _PublicScreenState extends State<PublicScreen> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        children: [
-          Center(
-            child: Text('Public Screen'),
-          ),
-        ]
-      )
-    );
+      // TODO: Implementar los tickets en los que se estan trabajando
+    ));
   }
 }

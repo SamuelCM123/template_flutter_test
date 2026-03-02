@@ -1,7 +1,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:template_flutter_test/shared/api/api_config.dart';
+import 'package:template_flutter_test/shared/api/config/api_config.dart';
 
 final apiAuthProvider = Provider<Dio>((ref) {
   final dio = Dio(

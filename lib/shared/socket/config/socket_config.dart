@@ -2,7 +2,7 @@
 
 import 'package:template_flutter_test/shared/constants/env/env_config.dart';
 
-class SocketConfig {
+abstract class SocketConfig {
 
   // TODO: CONFIGURAR LOS RECURSOS CENTRALIZADOS NECESARIOS PARA LA CONFIGURACIÓN DE LOS SOCKETS
   /**
@@ -16,11 +16,5 @@ class SocketConfig {
   int maxReconnectionAttempts = 5; //? Máximo de intentos de reconexión
   int reconnectionInterval = 5000; //? Intervalo entre intentos de reconexión en milisegundos
   static String socketUrl = EnvConfig.socketUrl; //? URL del socket obtenida de las variables de entorno
-
-  SocketConfig({
-    required this.heartbeatInterval,
-    required this.maxReconnectionAttempts,
-    required this.reconnectionInterval,
-  });
 
 }
