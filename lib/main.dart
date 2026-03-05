@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:template_flutter_test/router/app_router.dart';
+import 'package:template_flutter_test/shared/socket/socket_instance.dart';
+import 'package:template_flutter_test/shared/socket/socket_instance_pure.dart';
+// import 'package:template_flutter_test/shared/constants/env/env_config.dart';
+// import 'package:template_flutter_test/shared/socket/socket_instance.dart';
 
 void main() async {
 
@@ -12,6 +16,12 @@ void main() async {
 
   //? Cargar variables de entorno
   await dotenv.load(fileName: '.env');
+
+  //? Inicializar Socket Puro
+  // SocketInstancePure().connect();
+  
+  //? Inicializar Socket IO
+  SocketInstance().connect();
 
   //? Ejecutar la aplicación
   runApp(

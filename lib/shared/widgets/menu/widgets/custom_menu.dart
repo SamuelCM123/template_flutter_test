@@ -21,22 +21,32 @@ class CustomMenu extends StatefulWidget {
 class _CustomMenuState extends State<CustomMenu> {
   @override
   Widget build(BuildContext context) {
+
+    final itemVisibility = MenuItem.appMenu.where((item) => item.isShow).toList();
+
     return Drawer(
       child: ListView.builder(
-        itemCount: MenuItem.appMenu.length,
+        itemCount: itemVisibility.length,
         itemBuilder: (context, index) {
-          final item = MenuItem.appMenu[index];
-          return ListTile(
-            selectedColor: Color(0XFF293277),
-            selectedTileColor: Color(0xFFE7E9FB),
-            leading: Icon(item.icon),
-            title: Text(item.title),
-            selected: widget.selectIndexMenu == index,
-            onTap: () {
-              context.goNamed(item.name);
-              widget.scaffoldKey.currentState?.closeDrawer();
-            },
-          );
+          final item = itemVisibility[index];
+          print('item: ${item.isShow}');
+          if(item.isShow){
+
+            return ListTile(
+              selectedColor: Color(0XFF293277),
+              selectedTileColor: Color(0xFFE7E9FB),
+              leading: Icon(item.icon),
+              title: Text(item.title),
+              selected: widget.selectIndexMenu == index,
+              onTap: () {
+                context.goNamed(item.name);
+                widget.scaffoldKey.currentState?.closeDrawer();
+              },
+            );
+
+          }
+
+          return null;
         },
       ),
     );

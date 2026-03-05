@@ -21,9 +21,10 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     final location = GoRouterState.of(context).topRoute?.name;
+    print('location: $location');
     final providerTitle = ref.watch(selectedMenuTitle(location!));
     final providerIndex = ref.watch(selectedMenuIndex(location));
-
+  
     return Scaffold(
       key: scaffoldKey,
       drawer: CustomMenu(

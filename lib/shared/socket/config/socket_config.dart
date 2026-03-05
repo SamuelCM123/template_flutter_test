@@ -15,6 +15,7 @@ abstract class SocketConfig {
   int heartbeatInterval = 30000; //? Intervalo del heartbeat en milisegundos
   int maxReconnectionAttempts = 5; //? Máximo de intentos de reconexión
   int reconnectionInterval = 5000; //? Intervalo entre intentos de reconexión en milisegundos
-  static String socketUrl = EnvConfig.socketUrl; //? URL del socket obtenida de las variables de entorno
+  static String socketUrlPure = EnvConfig.socketUrlPure; //? URL del socket obtenida de las variables de entorno
+  static String socketUrlIO = EnvConfig.socketUrlIO; //? URL del socket obtenida de las variables de entorno
 
 }

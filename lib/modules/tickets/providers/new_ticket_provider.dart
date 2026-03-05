@@ -1,4 +1,5 @@
 
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:template_flutter_test/shared/api/providers/apiApp_provider.dart';
 
@@ -10,29 +11,49 @@ class NewTicket extends Notifier<NewTicketState> {
 
   @override
   NewTicketState build() {
+
+    Future.microtask(() async {
+      await getTicket();
+    });
+
     return NewTicketState(newTicket: 0, lastTicketNumber: 0);
   }
 
-  Future<int> getTicket () async {
-    final apiApp = ref.read(apiAppProvider);
+  Future<void> getTicket () async {
+
+    try{
+
+      final apiApp = ref.read(apiAppProvider);
+
       final response = await apiApp.get('/last');
       print(response);
       state = state.copyWith(
         newTicket: response.data,
         lastTicketNumber: response.data
       );
-      return response.data;
+
+    }
+    catch(e){
+      return;
+    }
+    
   }
 
   void createTicket () async {
-    final apiApp = ref.read(apiAppProvider);
-    final response = await apiApp.post('/');
-    print('createTicket:$response');
-    state = state.copyWith(
-      lastTicketNumber: response.data["number"],
-    );
+    try{
 
-    addNewTicket();
+      final apiApp = ref.read(apiAppProvider);
+      final response = await apiApp.post('/');
+      print('createTicket:$response');
+      state = state.copyWith(
+        lastTicketNumber: response.data["number"],
+      );
+
+      addNewTicket();
+    }
+    catch(e){
+      return null;
+    }
   }
 
   void addNewTicket(){

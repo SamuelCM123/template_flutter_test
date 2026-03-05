@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:template_flutter_test/shared/socket/socket_instance.dart';
 
-final socketStreamProvider = StreamProvider<List<Ticket>>((ref){
+final workingOnTicketStream = StreamProvider.autoDispose<List<Ticket>>((ref){
 
   final socket = SocketInstance().socket;
 
@@ -36,52 +36,21 @@ final socketStreamProvider = StreamProvider<List<Ticket>>((ref){
   return controller.stream;
 });
 
-// class TicketUpdateNotifier extends Notifier<TicketUpdateState> {
-
-//   final socket = SocketInstance().socket;
-
-//   @override
-//   TicketUpdateState build() {
-    
-//     socket?.on('on-working-on-ticket', (data) {
-//       print('Ticket on process: $data');
-//       state = state.copyWith(ticketsOnProcess: data);
-//     });
-//     return TicketUpdateState(ticketsOnProcess: {});
-    
-//   }
-
-
-
-// }
-
-// class TicketUpdateState {
-
-//   final Map<String, dynamic> ticketsOnProcess;
-
-//   TicketUpdateState({required this.ticketsOnProcess});
-
-//   TicketUpdateState copyWith({
-//     Map<String, dynamic>? ticketsOnProcess,
-//   }) {
-//     return TicketUpdateState(
-//       ticketsOnProcess: ticketsOnProcess ?? this.ticketsOnProcess,
-//     );
-//   }
-
-// }
-
 class Ticket {
   final String id;
-  final String number;
+  final int number;
   final String createdAt;
-  final String done;
+  final String handleAtDesk;
+  final String handleAt;
+  final bool done;
 
   Ticket({
     required this.id,
     required this.number,
     required this.createdAt,
-    required this.done,
+    required this.done, 
+    required this.handleAtDesk,
+    required this.handleAt
   });
 
   factory Ticket.fromJson(Map<String, dynamic> json) {
@@ -89,7 +58,9 @@ class Ticket {
       id: json['id'],
       number: json['number'],
       createdAt: json['created_at'],
-      done: json['done'],
+      done: json['done'], 
+      handleAtDesk: json['handleAtDesk'] ?? '',
+      handleAt: json['handleAt'] ?? '',
     );
   }
 }

@@ -5,6 +5,7 @@ import 'package:template_flutter_test/modules/dashboard_screen.dart';
 import 'package:template_flutter_test/modules/downloads/screens/update_app_screen.dart';
 import 'package:template_flutter_test/modules/home_screen.dart';
 import 'package:template_flutter_test/modules/qr/screens/qr_screen.dart';
+import 'package:template_flutter_test/modules/tickets/screens/desk.dart';
 import 'package:template_flutter_test/router/guards/index.dart'; // TODO: Implementar los guards
 import 'package:template_flutter_test/modules/tickets/screens/index.dart';
 import 'package:template_flutter_test/router/guards/repository/index.dart';
@@ -80,6 +81,16 @@ final routerProvider = Provider<GoRouter>((ref) {
                         path: '/dashboard/index-component',
                         name: 'index-component',
                         builder: (context, state) => IndexScreen(),
+                        routes: [
+                          GoRoute(
+                            path: 'desk/:id_desk',
+                            name: 'desk',
+                            builder: (context, state) {
+                              final idDesk = state.pathParameters['id_desk'] ?? '0';
+                              return Desk(id_desk: idDesk);
+                            },
+                          ),
+                        ]
                       ),
                     ],
                   ),

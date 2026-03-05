@@ -7,6 +7,7 @@ class MenuItem {
   final String path;
   final IconData icon;
   final List<MenuItem>? children;
+  bool isShow;
   // final Widget Function(BuildContext, GoRouterState, Widget) builder;
 
   MenuItem(
@@ -16,6 +17,7 @@ class MenuItem {
       required this.name,
       required this.path,
       required this.icon,
+      this.isShow = true
       // required this.builder
     });
 
@@ -62,6 +64,14 @@ class MenuItem {
       path: '/index-component',
       icon: Icons.receipt_long,
     ),
+    //* RUTA HIJA DE INDEX COMPONENT
+        MenuItem(
+          title: 'Desk', 
+          name: 'desk',
+          path: '/desk',
+          icon: Icons.receipt_long,
+          isShow: false
+        ),
     MenuItem(
       title: 'Update App',
       name: 'update-app', 

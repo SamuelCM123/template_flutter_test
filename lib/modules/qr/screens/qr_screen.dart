@@ -13,6 +13,11 @@ class _QrScreenState extends State<QrScreen> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
+        children: [
+          Center(
+            child: Text('Qr Screen'),
+          ),
+        ],
       ),
     );
   }
