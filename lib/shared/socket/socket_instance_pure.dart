@@ -19,10 +19,10 @@ class SocketInstancePure {
     try {
       _channel = WebSocketChannel.connect(Uri.parse(EnvConfig.socketUrlPure));
       _isConnected = true;
-      print('🚀 Conectado a WebSocket puro: ${EnvConfig.socketUrlPure}');
+      // print  ('🚀 Conectado a WebSocket puro: ${EnvConfig.socketUrlPure}');
     } catch (e) {
       _isConnected = false;
-      print('❌ Error al conectar: $e');
+      // print  ('❌ Error al conectar: $e');
     }
   }
 

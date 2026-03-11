@@ -19,7 +19,7 @@ class DeskProvider extends Notifier<DeskState> {
     Future.microtask(() async {
       ref.listen(ticketCountProvider, (previous, next) {
         next.whenData((tickets){
-          print('tickets:$tickets');
+          // // print  ('tickets:$tickets');
           state = state.copyWith(ticketPending: tickets);
         });
       });
@@ -37,17 +37,17 @@ class DeskProvider extends Notifier<DeskState> {
 
       final apiApp = ref.read(apiAppProvider);
       final response = await apiApp.get('/pending');
-      print('response sdasd:$response');
+      // print  ('response sdasd:$response');
       final List<dynamic>? data = response.data;
       final List<Ticket> finalTickets = data!.map((e) => Ticket.fromJson(e as Map<String, dynamic>)).toList();
-      print('finalTickets.length:${finalTickets.length}');
+      // print  ('finalTickets.length:${finalTickets.length}');
       state = state.copyWith(
         ticketPending: finalTickets.length
       );
 
     }
     catch(e){
-      print('error:$e');
+      // print  ('error:$e');
       return;
     }
 
@@ -63,7 +63,7 @@ class DeskProvider extends Notifier<DeskState> {
       final apiApp = ref.read(apiAppProvider);
       final response = await apiApp.get('/draw/$idDesk');
   
-      print('response:$response');
+      // print  ('response:$response');
       if(response.data['status'] == 'error') {
         ToastService.showToast(title: 'Atendiendo Ticket', message: response.data['message'], type: 'error');
         state = state.copyWith(
@@ -78,7 +78,7 @@ class DeskProvider extends Notifier<DeskState> {
       state = state.copyWith(
         ticketWorking: finalTicket
       );
-      print('next ticket:$response');
+      // print  ('next ticket:$response');
       
 
     }
@@ -91,16 +91,16 @@ class DeskProvider extends Notifier<DeskState> {
   Future<void> finishTicket(int idDesk) async {
     
     try{
-      print('state.ticketWorking:${state.ticketWorking?.id}');
+      // print  ('state.ticketWorking:${state.ticketWorking?.id}');
       // if(state.ticketWorking == null) return;
 
       final apiApp = ref.read(apiAppProvider);
       final response = await apiApp.put('/done/${state.ticketWorking!.id}');
 
-      print('response:${response.data["status"]}');
+      // print  ('response:${response.data["status"]}');
       
       if(response.data["status"] == "ok") {
-        print('entro');
+        // print  ('entro');
         state = state.copyWith(
           ticketWorking: null
         );

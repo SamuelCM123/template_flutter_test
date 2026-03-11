@@ -13,7 +13,7 @@ final socketStreamPureProvider = StreamProvider.autoDispose<List<Ticket>>((ref) 
 
   // El stream de ws puro devuelve strings, hay que parsearlos
   return instance.stream.map((rawData) {
-    print('rawData: $rawData');
+    // print  ('rawData: $rawData');
     final Map<String, dynamic> data = jsonDecode(rawData);
     
     // Si tu servidor TS envía algo como { "event": "tickets", "data": [...] }

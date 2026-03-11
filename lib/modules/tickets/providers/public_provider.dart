@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:template_flutter_test/modules/tickets/providers/socket_service_provider.dart';
 import 'package:template_flutter_test/modules/tickets/providers/socket_service_pure_provider.dart';
 import 'package:template_flutter_test/shared/api/providers/apiApp_provider.dart';
+import 'package:template_flutter_test/shared/helpers/encrypt/encrypt.dart';
 
-final publicProvider = NotifierProvider<PublicNotifier, PublicState>(() {
+final publicProvider = NotifierProvider.autoDispose<PublicNotifier, PublicState>(() {
   return PublicNotifier();
 });
 
@@ -14,10 +17,11 @@ class PublicNotifier extends Notifier<PublicState> {
     
     Future.microtask(() async {
       ref.listen(workingOnTicketStream, (previous, next) {
-        // print('socketStreamPureProvider: $next');
+        // print  ('socketStreamPureProvider: $next');
         next.whenData((tickets){
+          print  ('tickets:$tickets');
           // if(tickets.isNotEmpty){
-            state = state.copyWith(ticketsPending: tickets);
+            state = state.copyWith(ticketsPending: tickets); // TODO: Descomentar
           // }
         });
       });
@@ -32,13 +36,16 @@ class PublicNotifier extends Notifier<PublicState> {
     try{
       final apiApp = ref.read(apiAppProvider);
       final response = await apiApp.get('/working-on'); 
-      final List<dynamic>? data = response.data;
+      // print  ('response public:${response.data}');
+      final String descrypted = ref.read(encryptServiceProvider).decrypt(response.data);
+      
+      final List<dynamic>? data = jsonDecode(descrypted);
       final List<Ticket> finalTickets = data!.map((e) => Ticket.fromJson(e as Map<String, dynamic>)).toList();
 
       state = state.copyWith(ticketsPending: finalTickets);
     }
     catch(e){
-      print('error:$e');
+      // print  ('error:$e');
       return;
     }
 

@@ -1,8 +1,6 @@
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'package:template_flutter_test/shared/constants/env/env_config.dart';
-import 'package:template_flutter_test/shared/widgets/toast/toast_services.dart';
 
-// TODO: Configuración de la instancia del SOCKET
 class SocketInstance {
 
   static final SocketInstance _singleton = SocketInstance._internal();
@@ -26,21 +24,8 @@ class SocketInstance {
       .setTransports(['websocket'])
       .enableAutoConnect()
       .enableReconnection()
-      .setReconnectionAttempts(5)
       .build()
     );
-    // _socket?.connect();
-    print('Socket connected: ${_socket?.connected}');
-    _socket!.onConnect((e) => {
-      // print('Socket connected: ${e}'),
-      ToastService.showToast(title: 'Conectado', message: 'Se ha conectado con el servidor', type: 'success')
-    });
-    _socket!.onConnectError((e) {
-      ToastService.showToast(title: 'Error', message: '$e', type: 'error');
-    });
-    _socket!.onDisconnect((_) {
-      ToastService.showToast(title: 'Desconectado', message: 'Se ha perdido la conexion con el servidor', type: 'error');
-    });
   }
 
   void disconnect(){

@@ -17,16 +17,16 @@ class AutoUpdateService {
       ToastService.showToast(title: 'Descargando APK', message: 'Espere un momento mientras se descarga', type: 'info',duration: Duration(seconds: 10));
       final packageInfo = await PackageInfo.fromPlatform();
       final localBuild = packageInfo.version;
-      print("packageInfo: ${packageInfo.version}");
-      // print("Local build: $localBuild");
+      // print  ("packageInfo: ${packageInfo.version}");
+      // // print  ("Local build: $localBuild");
 
       final response =
           await _dio.get('https://api.github.com/repos/SamuelCM123/template_flutter_test/releases/latest');
-      print("Response: ${response.data}");
+      // print  ("Response: ${response.data}");
 
       final updateInfo = UpdateInfo.fromJson(response.data);
-      print(updateInfo.tagName);
-      print('v$localBuild');
+      // print  (updateInfo.tagName);
+      // print  ('v$localBuild');
       if (updateInfo.tagName != 'v$localBuild') {
         await _handleUpdate(updateInfo);
       }
@@ -34,14 +34,14 @@ class AutoUpdateService {
         ToastService.showToast(title: 'Actualizado', message: 'Ya tienes la ultima versión', type: 'error');
       }
     } catch (e) {
-      print("Error checking update: $e");
+      // print  ("Error checking update: $e");
     }
   }
 
   Future<void> _handleUpdate(UpdateInfo info) async {
     final androidInfo = await DeviceInfoPlugin().androidInfo;
     final sdkInt = androidInfo.version.sdkInt;
-    print('sdkInt:$sdkInt');
+    // print  ('sdkInt:$sdkInt');
     // Android 8+ necesita permiso explícito por app
     if (sdkInt >= 26) {
       if (!await Permission.requestInstallPackages.isGranted) {
@@ -78,8 +78,8 @@ class AutoUpdateService {
     final file = File(path);
     final bytes = await file.readAsBytes();
     final digest = sha256.convert(bytes);
-    print(digest);
-    print(expectedHash);
+    // print  (digest);
+    // print  (expectedHash);
     return 'sha256:${digest.toString().toLowerCase()}' ==
         expectedHash.toLowerCase();
   }

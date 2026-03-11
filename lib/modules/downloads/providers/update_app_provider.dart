@@ -15,7 +15,7 @@ class UpdateAppProvider extends Notifier<UpdateAppState>{
       // TODO: El BACKEND IMPLEMENTA API PARA CONSULTAR VERSIÓN DE FLUTTER
       final apiApp = ref.read(apiAppProvider);
       final response = await apiApp.get('/last');
-      print(response);
+      // // print  (response);
       state = state.copyWith(
         version: response.data,
       );

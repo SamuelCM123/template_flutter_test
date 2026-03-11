@@ -1,6 +1,8 @@
 
 import 'dart:async';
+import 'dart:convert';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:template_flutter_test/shared/helpers/encrypt/encrypt.dart';
 import 'package:template_flutter_test/shared/socket/socket_instance.dart';
 
 final workingOnTicketStream = StreamProvider.autoDispose<List<Ticket>>((ref){
@@ -11,9 +13,16 @@ final workingOnTicketStream = StreamProvider.autoDispose<List<Ticket>>((ref){
 
   void handleTicketUpdate(dynamic data) {
     try{
-      if(data is List){
-        print('Ticket on process: $data');
-        final tickets = data.map((e) => Ticket.fromJson(e)).toList();
+      
+      if(data is String){
+        print('data socket:$data');
+        // final decryptor = EncryptService(modeEncrypt: EncryptMode.gcm).decrypt(data);
+        final decryptor = ref.read(encryptServiceProvider).decrypt(data);
+        print('decryptor:$decryptor');
+        final List<dynamic> dataList = jsonDecode(decryptor);
+
+        // print('dataList:$dataList');
+        final tickets = dataList.map((e) => Ticket.fromJson(e)).toList();
 
         if(!controller.isClosed){
           controller.add(tickets);
@@ -21,7 +30,7 @@ final workingOnTicketStream = StreamProvider.autoDispose<List<Ticket>>((ref){
       }
     }
     catch(e,stack){
-      print('Error:$e');
+      print  ('Error:$e');
       controller.addError(e, stack);
     }
   }

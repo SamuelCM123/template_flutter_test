@@ -33,7 +33,7 @@ class _DeskState extends ConsumerState<Desk> {
             child: Center(
               child: OutlinedButton.icon(
                 onPressed: () {
-                  print('Nuevo Ticket');
+                  // print  ('Nuevo Ticket');
                   context.goNamed('index-component');
                 },
                 label: Text('Regresar', softWrap: false),
@@ -89,7 +89,7 @@ class _DeskState extends ConsumerState<Desk> {
                         width: 170,
                         child: OutlinedButton(
                           onPressed: () {
-                            print('Nuevo Ticket');
+                            // print  ('Nuevo Ticket');
                             ref.read(deskProvider.notifier).nextTicket(int.parse(widget.id_desk));
                           },
                           child: Text('Atender Siguiente', softWrap: false),
@@ -99,7 +99,7 @@ class _DeskState extends ConsumerState<Desk> {
                         width: 170,
                         child: OutlinedButton(
                           onPressed: () {
-                            print('Nuevo Ticket');
+                            // print  ('Nuevo Ticket');
                             // context.go('/dashboard/public');
                             ref.read(deskProvider.notifier).finishTicket(int.parse(widget.id_desk));
                           },

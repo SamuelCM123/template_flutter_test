@@ -22,7 +22,6 @@ class _UpdateAppScreenState extends ConsumerState<UpdateAppScreen> {
           ),
           OutlinedButton.icon(
             onPressed: () { 
-              print('Auto Update');
               AutoUpdateService().checkForUpdate();
             }, 
             label: const Text('Descarga APK'), 

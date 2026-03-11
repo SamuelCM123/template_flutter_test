@@ -26,7 +26,7 @@ class NewTicket extends Notifier<NewTicketState> {
       final apiApp = ref.read(apiAppProvider);
 
       final response = await apiApp.get('/last');
-      print(response);
+      // print  (response);
       state = state.copyWith(
         newTicket: response.data,
         lastTicketNumber: response.data
@@ -44,7 +44,7 @@ class NewTicket extends Notifier<NewTicketState> {
 
       final apiApp = ref.read(apiAppProvider);
       final response = await apiApp.post('/');
-      print('createTicket:$response');
+      // print  ('createTicket:$response');
       state = state.copyWith(
         lastTicketNumber: response.data["number"],
       );

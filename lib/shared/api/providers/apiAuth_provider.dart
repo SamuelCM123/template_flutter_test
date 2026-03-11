@@ -17,15 +17,15 @@ final apiAuthProvider = Provider<Dio>((ref) {
 
       // TODO: INTEGRAR LOS TOAST PARA NOTIFICAR
       onRequest: (options, handler) {
-        print('Request: ${options.path}');
+        // print  ('Request: ${options.path}');
         return handler.next(options);
       },
       onResponse: (response, handler) {
-        print('Response: ${response.data}');
+        // print  ('Response: ${response.data}');
         return handler.next(response);
       },
       onError: (error, handler) {
-        print('Error: ${error.message}');
+        // print  ('Error: ${error.message}');
         return handler.next(error);
       },
     ),

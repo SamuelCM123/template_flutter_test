@@ -25,11 +25,12 @@ class _CustomMenuState extends State<CustomMenu> {
     final itemVisibility = MenuItem.appMenu.where((item) => item.isShow).toList();
 
     return Drawer(
+      width: double.infinity,
       child: ListView.builder(
         itemCount: itemVisibility.length,
         itemBuilder: (context, index) {
           final item = itemVisibility[index];
-          print('item: ${item.isShow}');
+          // print  ('item: ${item.isShow}');
           if(item.isShow){
 
             return ListTile(

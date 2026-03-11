@@ -4,6 +4,7 @@ import 'package:template_flutter_test/shared/constants/env/env_config.dart';
 
 abstract class SocketConfig {
 
+  // TODO: VERIFICAR SI SE UTILIZARÁ
   // TODO: CONFIGURAR LOS RECURSOS CENTRALIZADOS NECESARIOS PARA LA CONFIGURACIÓN DE LOS SOCKETS
   /**
    ** 1- Verificar el tiempo del hearbeat

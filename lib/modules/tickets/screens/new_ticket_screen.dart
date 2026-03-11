@@ -38,7 +38,7 @@ class _NewTicketScreenState extends ConsumerState<NewTicketScreen> {
           ),
           OutlinedButton.icon(
             onPressed: () { 
-              print('Nuevo Ticket');
+              // print  ('Nuevo Ticket');
               // context.go('/dashboard/public');
               ref.read(newTicketProvider.notifier).createTicket();
             }, 
